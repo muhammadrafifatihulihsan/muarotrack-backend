@@ -1,0 +1,30 @@
+# Environment & secrets
+.env
+.env.production
+.env.*.local
+
+# Virtual environment & cache
+venv/
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Git
+.git/
+.gitignore
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# Dokumentasi & non-runtime
+*.md
+tests/
+walkthrough.md
+DEPLOYMENT.md
+docker-compose*.yml
+Dockerfile

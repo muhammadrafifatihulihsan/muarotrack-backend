@@ -1,0 +1,15 @@
+fastapi
+uvicorn[standard]
+sqlalchemy
+geoalchemy2
+shapely
+psycopg2-binary
+pydantic
+pydantic-settings
+httpx
+python-multipart
+apscheduler
+# expo-server-sdk - gantinya dibawah
+exponent-server-sdk
+openai
+earthengine-api

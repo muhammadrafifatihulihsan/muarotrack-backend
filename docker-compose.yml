@@ -1,0 +1,19 @@
+# version: '3.8'
+
+services:
+  db:
+    image: postgis/postgis:16-3.4
+    container_name: muarotrack-db
+    ports:
+      - "127.0.0.1:5433:5432"
+      # - "5433:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: muarotrack
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: always
+
+volumes:
+  postgres_data:
