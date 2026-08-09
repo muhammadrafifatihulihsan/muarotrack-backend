@@ -12,3 +12,8 @@ env/
 htmlcov/
 *.log
 .DS_Store
+
+# internal docs (not app code)
+implementation_plan.md
+walkthrough.md
+e2e_test.txt
