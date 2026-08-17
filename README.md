@@ -1,6 +1,33 @@
 # MuaroTrack Backend Server
 
+> **GEMASTIK XIX (2026) — Cabang Kompetisi VIII: Pengembangan Perangkat Lunak (Software Development)**
+> Tim: **alamak dahpulkam pulak** · ID Tim: **260010321952850** · Universitas Negeri Padang
+
 Server backend untuk proyek **MuaroTrack** berbasis **Python FastAPI** dan **PostgreSQL+PostGIS**. Menyediakan API terintegrasi untuk rekomendasi zona tangkap, prediksi bahan bakar (BBM), transkripsi laporan suara nelayan menggunakan AI (Whisper + DeepSeek), caching kondisi laut (Open-Meteo & TideCheck), penyimpanan titik favorit nelayan, dan sistem darurat SOS (Expo Push Notification).
+
+- Aplikasi mobile (frontend): [muarotrack-app](https://github.com/muhammadrafifatihulihsan/muarotrack-app)
+- APK Android: https://drive.google.com/drive/folders/1hroWpdvEJpyKpmBJho8lzwqTEA6m6NHC
+- Video demo: https://youtu.be/_h3ZziaByIQ
+
+## Struktur Proyek
+
+```
+server/
+├── main.py                  # Entrypoint aplikasi FastAPI (lifespan, scheduler)
+├── core/                    # config.py (settings), deps.py
+├── db/                      # base.py, session.py, schema.sql
+├── jobs/                    # refresh_zona_satelit.py, refresh_kondisi_laut.py
+├── models/                  # nelayan, zona, laporan, kondisi_laut, trip_bbm, titik_favorit, sos
+├── routers/                 # nelayan, zona, laporan, sync, kondisi_laut, trip_bbm, titik_favorit, sos
+├── schemas/                 # Validasi data (Pydantic)
+├── services/                # scoring, geo, moon, stt, deepseek_client, gee_client, marine_client, sos_dispatch, zona_grid, dll.
+├── tests/                   # 24 kasus uji (pytest)
+├── docker-compose.yml       # PostgreSQL/PostGIS lokal
+├── docker-compose.prod.yml  # Orkestrasi produksi
+├── Dockerfile               # Image multi-stage non-root
+├── requirements.txt         # Dependensi runtime
+└── requirements-dev.txt     # Dependensi pengujian
+```
 
 ## Prasyarat
 1. **Docker Desktop** (untuk menjalankan database PostgreSQL+PostGIS lokal).
@@ -109,6 +136,15 @@ Untuk beralih ke layanan asli (non-mock), ubah `MOCK_EXTERNAL=false` di `.env` d
 2. **TideCheck API Key (`TIDECHECK_API_KEY`)**: Daftar di [TideCheck](https://tidecheck.com/developers) untuk mendapatkan API Key ramalan pasang surut air laut.
 3. **Google Earth Engine (`GEE_PROJECT_ID`)**: Daftar di [Google Earth Engine](https://earthengine.google.com/signup). Buat project di Google Cloud, aktifkan Earth Engine API, dan masukkan project ID tersebut.
 4. **Expo Access Token (`EXPO_ACCESS_TOKEN`)**: Buat akun di [Expo](https://expo.dev) dan dapatkan token akses untuk pengiriman push notification darurat SOS ke perangkat nelayan sekitar.
+
+## Lisensi
+
+- Lisensi kode sumber aplikasi: **MIT License** — lihat berkas [`LICENSE`](LICENSE)
+- Daftar lisensi komponen pihak ketiga: [`THIRD_PARTY_LICENSES.md`](THIRD_PARTY_LICENSES.md)
+
+---
+
+*Dikembangkan untuk Pagelaran Mahasiswa Nasional Bidang TIK (GEMASTIK) XIX Tahun 2026 — Universitas Negeri Padang.*
 
 ---
 
